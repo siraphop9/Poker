@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5m6nm2mcv33"]
+
+[ext_resource type="AudioStream" uid="uid://untif70oogsr" path="res://Sounds/Casino.mp3" id="1_qtush"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_qtush")
+autoplay = true

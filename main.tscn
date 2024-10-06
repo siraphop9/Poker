@@ -1,0 +1,794 @@
+[gd_scene load_steps=33 format=3 uid="uid://djbsxiltv41qk"]
+
+[ext_resource type="Script" path="res://MultiplayerNode.gd" id="1_0addx"]
+[ext_resource type="Texture2D" uid="uid://bep5v6rj0awlr" path="res://new_table.png" id="1_3uev3"]
+[ext_resource type="Texture2D" uid="uid://ddwx0gmghynnk" path="res://table.png" id="1_m3416"]
+[ext_resource type="PackedScene" uid="uid://bmli0bmg2edyi" path="res://GameObjects/Card.tscn" id="2_26pop"]
+[ext_resource type="AudioStream" uid="uid://c8cetqxab48c8" path="res://Sounds/check.mp3" id="4_smp3r"]
+[ext_resource type="Script" path="res://Poker.gd" id="6_qw8eu"]
+[ext_resource type="Texture2D" uid="uid://byrk24videdsv" path="res://Avatars/Cash.png" id="7_tsap7"]
+[ext_resource type="PackedScene" uid="uid://cp1ly1mqmwfdc" path="res://GameObjects/Player.tscn" id="7_xmc3h"]
+[ext_resource type="Theme" uid="uid://0pkasbsjplj3" path="res://default_theme.tres" id="8_b8ot7"]
+[ext_resource type="Script" path="res://TitleSequence.gd" id="8_xwwrw"]
+[ext_resource type="Texture2D" uid="uid://bk0fwf1kqg4je" path="res://Avatars/Bidoof.png" id="8_yn6fy"]
+[ext_resource type="Texture2D" uid="uid://baj77pjkb825x" path="res://Avatars/Javid.png" id="9_st1rn"]
+[ext_resource type="StyleBox" uid="uid://cb1vnfsq2bp8k" path="res://button_default.tres" id="10_ttfgp"]
+[ext_resource type="StyleBox" uid="uid://b7dx5ai7i6l3r" path="res://text.tres" id="13_rdfts"]
+[ext_resource type="Script" path="res://Chat.gd" id="14_t5qbl"]
+[ext_resource type="StyleBox" uid="uid://8o0xps0blob3" path="res://panel_yellow.tres" id="15_itjlv"]
+[ext_resource type="StyleBox" uid="uid://b6ebn6l3bcfmr" path="res://button_default_circle.tres" id="16_ajg56"]
+[ext_resource type="StyleBox" uid="uid://cd4cxyt4t8ge5" path="res://button_click_circle.tres" id="17_boiu2"]
+
+[sub_resource type="Gradient" id="Gradient_wl23a"]
+colors = PackedColorArray(0.321569, 0.117647, 0.14902, 1, 0.321569, 0.117647, 0.14902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nf53x"]
+gradient = SubResource("Gradient_wl23a")
+width = 1280
+height = 720
+
+[sub_resource type="Animation" id="Animation_wq23r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1281, 313)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Label2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_c2koc"]
+resource_name = "announce"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.3, 3.5),
+"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"update": 0,
+"values": [Vector2(1281, 313), Vector2(0, 313), Vector2(0, 313), Vector2(-1288, 313)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Label2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.3, 3.5),
+"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"update": 0,
+"values": [Vector2(1280, 416), Vector2(0, 427), Vector2(0, 427), Vector2(-1280, 427)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hacng"]
+_data = {
+"RESET": SubResource("Animation_wq23r"),
+"announce": SubResource("Animation_c2koc")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_h6ct4"]
+font_size = 81
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(7.725, 7.02)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l104a"]
+font_size = 46
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5.175, 5.22)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2kq5r"]
+font_size = 51
+
+[sub_resource type="LabelSettings" id="LabelSettings_pt8go"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_4oyte"]
+number_color = Color(1, 1, 1, 1)
+symbol_color = Color(1, 1, 1, 1)
+function_color = Color(1, 1, 1, 1)
+member_variable_color = Color(1, 1, 1, 1)
+keyword_colors = {
+"bet": Color(0.968627, 0.901961, 0, 1),
+"calls": Color(0.968627, 0.901961, 0, 1),
+"checks": Color(0.968627, 0.901961, 0, 1),
+"folded": Color(0.968627, 0.901961, 0, 1),
+"joined": Color(0.262745, 1, 0.980392, 1),
+"left": Color(0.262745, 1, 0.980392, 1),
+"raised": Color(0.968627, 0.901961, 0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_p05uh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Notification/Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 721)]
+}
+
+[sub_resource type="Animation" id="Animation_t3aty"]
+resource_name = "popup"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Notification/Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 721), Vector2(1, 676), Vector2(1, 676), Vector2(1, 721)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxlo5"]
+_data = {
+"RESET": SubResource("Animation_p05uh"),
+"popup": SubResource("Animation_t3aty")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ec0g"]
+bg_color = Color(0.180392, 0.258824, 0.462745, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.231373)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[node name="Node2D2" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+visible = false
+texture = SubResource("GradientTexture2D_nf53x")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Camera2D"]
+z_index = -2
+texture = ExtResource("1_3uev3")
+
+[node name="Table" type="Node2D" parent="."]
+script = ExtResource("6_qw8eu")
+
+[node name="MultiplayerNode" type="Node2D" parent="." node_paths=PackedStringArray("_text_console", "_table", "_hostButton", "_networkPanel", "_multiplayerPanel", "_nickname", "_player_list", "_lobby", "_clientControls", "_assets", "_flop", "_hand", "_playerIcons", "_myPlayerIcon", "_titleSequence", "_raiseLabel", "_raiseSlider", "_playControls", "_potLabel", "_ipAddressInput", "_avatarPicker", "_avatarImage", "_callButton", "_foldButton", "_checkButton", "_raiseButton", "_raiseBar", "_noisePlayer", "_chatWindow", "_chatBox", "_messageBox", "_showHandsButton", "_notification", "_notificationLabel", "_muteButton", "_hostPanel")]
+position = Vector2(4, 0)
+rotation = 0.000507139
+script = ExtResource("1_0addx")
+_text_console = NodePath("../Control/Join Panel/HBoxContainer/TextEdit")
+_table = NodePath("../Table")
+_hostButton = NodePath("../Control/Join Panel/HBoxContainer/VBoxContainer/HOST")
+_networkPanel = NodePath("../Control/Join Panel/HBoxContainer/VBoxContainer")
+_multiplayerPanel = NodePath("../Control/Join Panel")
+_nickname = NodePath("../Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer3/NICKNAME")
+_player_list = NodePath("../Control/Lobby/Panel2/ScrollContainer/VBoxContainer/HBoxContainer")
+_lobby = NodePath("../Control/Lobby")
+_clientControls = NodePath("../Control/Control")
+_assets = NodePath("../Node2D")
+_flop = [NodePath("../Node2D/FLOP_1"), NodePath("../Node2D/FLOP_2"), NodePath("../Node2D/FLOP_3"), NodePath("../Node2D/FLOP_4"), NodePath("../Node2D/FLOP_5")]
+_hand = [NodePath("../Node2D/TextureRect2/Card"), NodePath("../Node2D/TextureRect2/Card2")]
+_playerIcons = NodePath("../Node2D/PlayerList")
+_myPlayerIcon = NodePath("../Node2D/TextureRect2")
+_titleSequence = NodePath("../Control/AnimationPlayer")
+_raiseLabel = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer3/PanelContainer/Label")
+_raiseSlider = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer4/HSlider")
+_playControls = NodePath("../Control/Control/Controls")
+_potLabel = NodePath("../Control/Control/Label")
+_ipAddressInput = NodePath("../Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer/LineEdit")
+_avatarPicker = NodePath("../Control/Join Panel/HBoxContainer/VBoxContainer/PanelContainer/MenuButton")
+_avatarImage = NodePath("../Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer2/TextureRect")
+_callButton = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer/CALL")
+_foldButton = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer2/FOLD")
+_checkButton = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer/CHECK")
+_raiseButton = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer/RAISE")
+_raiseBar = NodePath("../Control/Control/Controls/VBoxContainer2/HBoxContainer4")
+_noisePlayer = NodePath("AudioStreamPlayer")
+_chatWindow = NodePath("../Control/CHAT")
+_chatBox = NodePath("../Control/CHAT/VBoxContainer/CHAT_TEXT")
+_messageBox = NodePath("../Control/CHAT/VBoxContainer/HBoxContainer/CHAT_TEXTFIELD")
+_showHandsButton = NodePath("../Control/Lobby/Button2")
+_notification = NodePath("../Notification")
+_notificationLabel = NodePath("../Notification/Panel/Label")
+_muteButton = NodePath("../Control/MUTE")
+_hostPanel = NodePath("../Control/Server Panel")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MultiplayerNode"]
+stream = ExtResource("4_smp3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("1_m3416")
+offset = Vector2(960, 540)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640, 360)
+scale = Vector2(0.666, 0.666)
+texture = ExtResource("1_m3416")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="FLOP_1" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(384.007, 456.114)
+scaleMultiplier = Vector2(1.15, 1.15)
+positionOffset = Vector2(0, 0)
+
+[node name="FLOP_2" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(512.049, 456.114)
+scaleMultiplier = Vector2(1.15, 1.15)
+positionOffset = Vector2(0, 0)
+
+[node name="FLOP_3" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(640.091, 456.114)
+scaleMultiplier = Vector2(1.15, 1.15)
+positionOffset = Vector2(0, 0)
+
+[node name="FLOP_4" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(768.133, 456.114)
+scaleMultiplier = Vector2(1.15, 1.15)
+positionOffset = Vector2(0, 0)
+
+[node name="FLOP_5" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(896.176, 457.018)
+scaleMultiplier = Vector2(1.15, 1.15)
+positionOffset = Vector2(0, 0)
+
+[node name="HAND_1" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(63.1194, 563.627)
+scale = Vector2(0.75, 0.75)
+
+[node name="HAND_2" parent="Node2D" instance=ExtResource("2_26pop")]
+visible = false
+position = Vector2(159.602, 563.628)
+scale = Vector2(0.75, 0.75)
+
+[node name="PlayerList" type="Node2D" parent="Node2D"]
+
+[node name="TextureRect2" parent="Node2D" instance=ExtResource("7_xmc3h")]
+visible = false
+offset_left = 1080.0
+offset_top = 522.0
+offset_right = 1279.0
+offset_bottom = 720.0
+
+[node name="Card" parent="Node2D/TextureRect2" index="4"]
+position = Vector2(-43.0001, 127)
+scale = Vector2(0.7, 0.7)
+scaleMultiplier = Vector2(1.5, 1.5)
+positionOffset = Vector2(0, -34)
+
+[node name="Card2" parent="Node2D/TextureRect2" index="5"]
+position = Vector2(-134, 127)
+scale = Vector2(0.7, 0.7)
+scaleMultiplier = Vector2(1.5, 1.5)
+positionOffset = Vector2(0, -34)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" node_paths=PackedStringArray("label", "subLabel")]
+libraries = {
+"": SubResource("AnimationLibrary_hacng")
+}
+script = ExtResource("8_xwwrw")
+label = NodePath("Label")
+subLabel = NodePath("Label2")
+
+[node name="Label" type="Label" parent="Control/AnimationPlayer"]
+z_index = 2
+offset_left = 1281.0
+offset_top = 313.0
+offset_right = 2561.0
+offset_bottom = 427.0
+theme = ExtResource("8_b8ot7")
+text = "Player"
+label_settings = SubResource("LabelSettings_h6ct4")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/AnimationPlayer"]
+z_index = 2
+offset_left = -1280.0
+offset_top = 427.0
+offset_right = -0.000488281
+offset_bottom = 541.0
+theme = ExtResource("8_b8ot7")
+text = "Full House"
+label_settings = SubResource("LabelSettings_l104a")
+horizontal_alignment = 1
+
+[node name="Join Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 507.63
+offset_top = 150.0
+offset_right = 772.74
+offset_bottom = 536.0
+grow_horizontal = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Join Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="Control/Join Panel/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+editable = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Join Panel/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Join Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+theme_override_styles/panel = ExtResource("10_ttfgp")
+
+[node name="MenuButton" type="MenuButton" parent="Control/Join Panel/HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+theme_type_variation = &"test"
+text = "AVATAR"
+item_count = 4
+popup/item_0/text = "Bidoof"
+popup/item_0/icon = ExtResource("8_yn6fy")
+popup/item_1/text = "Javid"
+popup/item_1/icon = ExtResource("9_st1rn")
+popup/item_1/id = 1
+popup/item_2/text = "Bidoof2"
+popup/item_2/icon = ExtResource("8_yn6fy")
+popup/item_2/id = 2
+popup/item_3/text = "Javid2"
+popup/item_3/icon = ExtResource("9_st1rn")
+popup/item_3/id = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Join Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+texture = ExtResource("8_yn6fy")
+expand_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/Join Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="NICKNAME" type="LineEdit" parent="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+text = "Player"
+placeholder_text = "Nickname"
+
+[node name="JOIN2" type="Button" parent="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+text = "DISCORD"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Join Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="LineEdit" type="LineEdit" parent="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+text = "localhost:7777"
+placeholder_text = "IPAddress:Port"
+
+[node name="JOIN" type="Button" parent="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+text = "JOIN"
+
+[node name="HOST" type="Button" parent="Control/Join Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+text = "HOST"
+
+[node name="Lobby" type="VBoxContainer" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 274.0
+offset_right = 1278.0
+offset_bottom = 525.0
+
+[node name="Panel2" type="Panel" parent="Control/Lobby"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("8_b8ot7")
+theme_override_styles/panel = ExtResource("13_rdfts")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Lobby/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_b8ot7")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Lobby/Panel2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/Lobby/Panel2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/Lobby"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+text = "READY"
+
+[node name="Button2" type="Button" parent="Control/Lobby"]
+visible = false
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+text = "SHOW HANDS"
+
+[node name="Control" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme = ExtResource("8_b8ot7")
+
+[node name="Label" type="Label" parent="Control/Control"]
+modulate = Color(1, 1, 1, 0.792157)
+layout_mode = 2
+offset_top = 278.0
+offset_right = 1280.0
+offset_bottom = 351.0
+theme = ExtResource("8_b8ot7")
+text = "0"
+label_settings = SubResource("LabelSettings_2kq5r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="Control/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="Control/Control/VBoxContainer/HBoxContainer/HBoxContainer2"]
+visible = false
+z_index = -3
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+texture = ExtResource("7_tsap7")
+stretch_mode = 3
+flip_h = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/Control/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="Controls" type="PanelContainer" parent="Control/Control"]
+layout_mode = 2
+offset_left = 508.0
+offset_top = 593.0
+offset_right = 773.0
+offset_bottom = 697.0
+theme = ExtResource("8_b8ot7")
+theme_override_styles/panel = ExtResource("15_itjlv")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Control/Controls"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/Control/Controls/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+text = "0$"
+label_settings = SubResource("LabelSettings_pt8go")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/Control/Controls/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+
+[node name="HSlider" type="HSlider" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("8_b8ot7")
+max_value = 1000.0
+value = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Control/Controls/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="CALL" type="Button" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+text = "CALL"
+
+[node name="CHECK" type="Button" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+text = "CHECK"
+
+[node name="RAISE" type="Button" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+text = "RAISE"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Control/Controls/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("8_b8ot7")
+alignment = 1
+
+[node name="FOLD" type="Button" parent="Control/Control/Controls/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_b8ot7")
+text = "FOLD"
+
+[node name="Control2" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("8_b8ot7")
+
+[node name="CHAT" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 278.0
+offset_right = 229.0
+offset_bottom = 638.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CHAT"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 220.0
+offset_bottom = 358.0
+
+[node name="CHAT_TEXT" type="TextEdit" parent="Control/CHAT/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+wrap_mode = 1
+syntax_highlighter = SubResource("CodeHighlighter_4oyte")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CHAT/VBoxContainer"]
+layout_mode = 2
+
+[node name="CHAT_TEXTFIELD" type="LineEdit" parent="Control/CHAT/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "MESSAGE"
+script = ExtResource("14_t5qbl")
+
+[node name="CHAT_SEND" type="Button" parent="Control/CHAT/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "SEND"
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/CHAT/VBoxContainer"]
+layout_mode = 2
+
+[node name="Server Panel" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Server Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -13.5
+offset_right = 146.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Server Panel/PanelContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/Server Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Skip Turn"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Server Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Control/Server Panel/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "End Round"
+
+[node name="Button3" type="Button" parent="Control/Server Panel/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reset Currency"
+
+[node name="MUTE" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 49.0
+offset_top = 8.0
+offset_right = 85.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("16_ajg56")
+theme_override_styles/disabled = ExtResource("16_ajg56")
+theme_override_styles/hover = ExtResource("16_ajg56")
+theme_override_styles/pressed = ExtResource("17_boiu2")
+theme_override_styles/normal = ExtResource("16_ajg56")
+text = "🔇"
+icon_alignment = 1
+
+[node name="STOP" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 41.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("16_ajg56")
+theme_override_styles/disabled = ExtResource("16_ajg56")
+theme_override_styles/hover = ExtResource("16_ajg56")
+theme_override_styles/pressed = ExtResource("17_boiu2")
+theme_override_styles/normal = ExtResource("16_ajg56")
+text = "🛑"
+icon_alignment = 1
+
+[node name="Notification" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uxlo5")
+}
+
+[node name="Panel" type="Panel" parent="Notification"]
+offset_left = 1.0
+offset_top = 721.0
+offset_right = 182.0
+offset_bottom = 763.0
+theme = ExtResource("8_b8ot7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ec0g")
+
+[node name="Label" type="Label" parent="Notification/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOUR TURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer3/JOIN2" to="MultiplayerNode" method="_on_discord_pressed"]
+[connection signal="pressed" from="Control/Join Panel/HBoxContainer/VBoxContainer/HBoxContainer/JOIN" to="MultiplayerNode" method="_on_join_pressed"]
+[connection signal="pressed" from="Control/Join Panel/HBoxContainer/VBoxContainer/HOST" to="MultiplayerNode" method="_on_host_pressed"]
+[connection signal="pressed" from="Control/Lobby/Button" to="MultiplayerNode" method="_on_ready_pressed"]
+[connection signal="pressed" from="Control/Lobby/Button2" to="MultiplayerNode" method="_on_show_hands_pressed"]
+[connection signal="value_changed" from="Control/Control/Controls/VBoxContainer2/HBoxContainer4/HSlider" to="MultiplayerNode" method="_on_bet_slider_value_changed"]
+[connection signal="pressed" from="Control/Control/Controls/VBoxContainer2/HBoxContainer/CALL" to="MultiplayerNode" method="_on_call_pressed"]
+[connection signal="pressed" from="Control/Control/Controls/VBoxContainer2/HBoxContainer/CHECK" to="MultiplayerNode" method="_on_check_pressed"]
+[connection signal="pressed" from="Control/Control/Controls/VBoxContainer2/HBoxContainer/RAISE" to="MultiplayerNode" method="_on_bet_pressed"]
+[connection signal="pressed" from="Control/Control/Controls/VBoxContainer2/HBoxContainer2/FOLD" to="MultiplayerNode" method="_on_fold_pressed"]
+[connection signal="sendMessage" from="Control/CHAT/VBoxContainer/HBoxContainer/CHAT_TEXTFIELD" to="MultiplayerNode" method="_on_chat_send_pressed"]
+[connection signal="pressed" from="Control/CHAT/VBoxContainer/HBoxContainer/CHAT_SEND" to="MultiplayerNode" method="_on_chat_send_pressed"]
+[connection signal="pressed" from="Control/Server Panel/PanelContainer/VBoxContainer/Button" to="MultiplayerNode" method="_on_skip_turn_pressed"]
+[connection signal="pressed" from="Control/Server Panel/PanelContainer/VBoxContainer/HBoxContainer/Button2" to="MultiplayerNode" method="_on_end_round_pressed"]
+[connection signal="pressed" from="Control/Server Panel/PanelContainer/VBoxContainer/HBoxContainer/Button3" to="MultiplayerNode" method="_on_currency_reset_pressed"]
+[connection signal="pressed" from="Control/MUTE" to="MultiplayerNode" method="_on_mute_pressed"]
+[connection signal="pressed" from="Control/STOP" to="MultiplayerNode" method="_on_stop_pressed"]
+
+[editable path="Node2D/TextureRect2"]
